@@ -70,7 +70,7 @@ export default {
         try {
           const response = await loginApi(formData.value);
           if (!response?.jwt) throw "El usuario o contraseña no son validos";
-          setTokenApi(response.jwt);
+          // setTokenApi(response.jwt);
           router.push("/");
         } catch (error) {
           console.log(error);
