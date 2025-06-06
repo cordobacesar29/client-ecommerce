@@ -38,7 +38,7 @@ import { useRouter } from "vue-router";
 import * as Yup from "yup";
 import BasicLayout from "../layouts/BasicLayout";
 import { loginApi } from "../api/user";
-//import { setTokenApi, getTokenApi } from "../api/token";
+import { setTokenApi, getTokenApi } from "../api/token";
 
 export default {
   name: "Login",
@@ -50,11 +50,11 @@ export default {
     let formError = ref({});
     let loading = ref(false);
     const router = useRouter();
-   // const token = getTokenApi();
+   const token = getTokenApi();
 
-    // onMounted(() => {
-    //   if (token) return router.push("/");
-    // });
+    onMounted(() => {
+      if (token) return router.push("/");
+    });
 
     const schemaForm = Yup.object().shape({
       identifier: Yup.string().required(true),
@@ -70,7 +70,7 @@ export default {
         try {
           const response = await loginApi(formData.value);
           if (!response?.jwt) throw "El usuario o contraseña no son validos";
-          // setTokenApi(response.jwt);
+          setTokenApi(response.jwt);
           router.push("/");
         } catch (error) {
           console.log(error);
