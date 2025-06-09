@@ -4,6 +4,11 @@
       <div class="left menu">
         <router-link class="item" to="/">
           <img class="ui small image" src="../assets/logo.png" />
+          <div v-for="category in categories" :key="category.id">
+            <router-link class="item" :to="category.slug">
+              {{  category.title }}
+            </router-link>
+          </div>
         </router-link>
       </div>
       <div class="right menu">
@@ -28,18 +33,37 @@
 
 <script>
 import { deleteTokenApi, getTokenApi } from "../api/token";
+import {getCategoriesApi} from "../api/category"
+import {onMounted, ref} from "vue";
+import {useStore} from "vuex"
+
 export default {
   name: "Menu",
   setup() {
+    let categories = ref(null)
     const token = getTokenApi();
+    const store = useStore();
+
+
+     onMounted(async () => {
+      const response = await getCategoriesApi();
+      categories.value = response.data;
+    });
 
     const logout = ()=> {
       deleteTokenApi();
       location.replace("/");
     };
+
+    // const openCart = () => {
+    //   store.commit("setShowCart", true);
+    // };
+
     return {
       token,
-      logout
+      logout,
+      categories,
+      //openCart
     };
   },
 };
