@@ -19,7 +19,7 @@
           <router-link class="item" to="/order" v-if="token">
           Pedidos
         </router-link>
-        <span class="ui item cart">
+        <span class="ui item cart" @click="openCart">
           <i class="shopping cart icon"></i>
         </span>
         <span class="ui item logout" @click="logout">
@@ -55,15 +55,15 @@ export default {
       location.replace("/");
     };
 
-    // const openCart = () => {
-    //   store.commit("setShowCart", true);
-    // };
+    const openCart = () => {
+      store.commit("setShowCart", true);
+    };
 
     return {
       token,
       logout,
       categories,
-      //openCart
+      openCart
     };
   },
 };

@@ -7,15 +7,13 @@
       <div class="header">{{ product?.name }}</div>
       <div class="description">{{ product?.price }} €</div>
     </div>
-    <div class="ui button primary" >
-      Comprar
-    </div>
+    <div class="ui button primary"  @click="addProductCart(product?.documentId)">Comprar</div>
   </div>
 </template>
 
 <script>
 import { API_URL } from "../utils/constants";
-//import { addProductCartApi } from "../api/cart";
+import { addProductCartApi } from "../api/cart";
 
 export default {
   name: "Product",
@@ -24,14 +22,14 @@ export default {
   },
   setup(props) {
     const addProductCart = (idProduct) => {
-      //addProductCartApi(idProduct);
+      addProductCartApi(idProduct);
     };
 
-     return {
-       API_URL,
-  //     //addProductCart,
+    return {
+      API_URL,
+      addProductCart,
     };
-   },
+  },
 };
 </script>
 

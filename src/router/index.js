@@ -1,9 +1,9 @@
+import { createRouter, createWebHistory } from "vue-router";
 import Category from "@/views/Category.vue";
 import HomeView from "@/views/HomeView.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
-import { createRouter, createWebHistory } from "vue-router";
-
+import Cart from "@/views/Cart.vue";
 
 const routes = [
   {
@@ -21,11 +21,11 @@ const routes = [
     name: "Register",
     component: Register,
   },
-  // {
-  //   path: "/cart",
-  //   name: "Cart",
-  //   component: Cart,
-  // },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: Cart,
+  },
   // {
   //   path: "/orders",
   //   name: "Orders",
